@@ -13,6 +13,11 @@ pipeline {
                 sh 'ls -R'
             }
         }
+        stage('upload to nexus') {
+            steps{
+                nexusArtifactUploader artifacts: [[artifactId: 'myapp', classifier: '', file: 'target/*.war', type: 'war']], credentialsId: 'nexus-cred', groupId: 'in.reyaz', nexusUrl: '65.0.117.194:2001', nexusVersion: 'nexus3', protocol: 'http', repository: 'maven-releases', version: '8.3.3'
+            }
+        }
 
         stage('Build WAR') {
             steps {
