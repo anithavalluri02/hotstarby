@@ -7,10 +7,11 @@
 	<version>8.3.3-SNAPSHOT</version>
 	<name>myapp</name>
 	<url>http://maven.apache.org</url>
-	 <properties>
+
+	<properties>
      <maven.compiler.source>1.8</maven.compiler.source>
      <maven.compiler.target>1.8</maven.compiler.target>
-</properties>
+    </properties>
 
 	<dependencies>
 		<dependency>
@@ -25,31 +26,44 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
-  <build>
-    <finalName>myapp</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.3.1</version>
-      </plugin>
-	    <plugin>
-    <groupId>org.codehaus.mojo</groupId>
-    <artifactId>sonar-maven-plugin</artifactId>
-    <version>3.0.2</version>
-</plugin>
-    </plugins>
-  </build>
+
+  	<build>
+	    <finalName>myapp</finalName>
+	    <plugins>
+	      <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-war-plugin</artifactId>
+	        <version>3.3.1</version>
+	      </plugin>
+	      <plugin>
+	        <groupId>org.codehaus.mojo</groupId>
+	        <artifactId>sonar-maven-plugin</artifactId>
+	        <version>3.0.2</version>
+	      </plugin>
+	    </plugins>
+  	</build>
 	
 	<pluginRepositories>
 	    <pluginRepository>    
-		<id>maven1</id>
-		<name>Maven.org</name>
-		<url>https://repo1.maven.org/maven2</url>
+			<id>maven1</id>
+			<name>Maven.org</name>
+			<url>https://repo1.maven.org/maven2</url>
 	    </pluginRepository>
 	</pluginRepositories>
 
-	
+	<!-- Added Distribution Management -->
+	<distributionManagement>
+	    <repository>
+	        <id>nexus-releases</id>
+	        <name>Nexus Release Repository</name>
+	        <url>http://localhost:8081/repository/maven-releases/</url>
+	    </repository>
+	    <snapshotRepository>
+	        <id>nexus-snapshots</id>
+	        <name>Nexus Snapshot Repository</name>
+	        <url>http://localhost:8081/repository/maven-snapshots/</url>
+	    </snapshotRepository>
+	</distributionManagement>
+
 </project>
